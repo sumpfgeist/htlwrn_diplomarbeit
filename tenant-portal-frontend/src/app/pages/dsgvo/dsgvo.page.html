@@ -1,0 +1,38 @@
+<ion-header class="app-toolbar">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-icon name="shield-checkmark-outline" class="toolbar-icon"></ion-icon>
+    </ion-buttons>
+    <ion-title>{{ 'DSGVO.TITLE' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card class="dsgvo-card">
+    <ion-card-header>
+      <ion-card-title>{{ 'DSGVO.HEADLINE' | translate }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{ 'DSGVO.TEXT_1' | translate }}</p>
+      <p>{{ 'DSGVO.TEXT_2' | translate }}</p>
+      <p>
+        <strong>{{ 'DSGVO.TEXT_3_TITLE' | translate }}</strong><br />
+        {{ 'DSGVO.TEXT_3' | translate }}
+      </p>
+    </ion-card-content>
+
+    <ion-row class="ion-padding ion-justify-content-between">
+      <ion-col size="6">
+        <ion-button expand="block" color="danger" (click)="decline()">
+          {{ 'DSGVO.DECLINE' | translate }}
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" color="success" (click)="accept()">
+          {{ 'DSGVO.ACCEPT' | translate }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>
