@@ -37,8 +37,14 @@ ion-content.login-bg {
   background-size: cover;
   background-position: center;
 }
+
 .login-wrap {
   max-width: 420px;
   margin: 0 auto;
-  padding-top: 24px;
+  padding-top: 12vh;
 }
+
+h2 {
+  margin-bottom: 16px;
+}
+

@@ -1,56 +1,48 @@
 {
-  "COMMON": {
-    "SAVE": "Speichern"
+  "LOGIN": {
+    "TITLE": "Anmeldung",
+    "USERNAME": "Benutzername",
+    "PASSWORD": "Passwort",
+    "SIGN_IN": "Einloggen"
   },
   "TABS": {
     "DASHBOARDS": "Dashboards",
-    "REPORTS": "Reports"
-  },
-  "LOGIN": {
-    "TITLE": "Login",
-    "USERNAME": "Username oder E-Mail Adresse",
-    "PASSWORD": "Passwort",
-    "BUTTON": "Login",
-    "DSGVO": "DSGVO"
+    "REPORTS": "Reports",
+    "PROFILE": "Profil"
   },
   "DASHBOARDS": {
-    "TITLE": "Dashboards",
-    "CHART_TITLE": "Diagramm",
-    "CHART_PLACEHOLDER": "Chart Demo für Jahr"
+    "TITLE": "Dashboard",
+    "CHART_TITLE": "Verbrauchsübersicht",
+    "CHART_PLACEHOLDER": "Chart für Jahr:",
+    "SELECT_ROOM": "Raum auswählen"
   },
   "REPORTS": {
     "TITLE": "Reports",
-    "GENERAL": "Allgemeine Informationen",
-    "NAME": "Bericht Name",
+    "GENERAL": "Allgemein",
+    "NAME": "Name",
     "SETTINGS": "Einstellungen",
-    "INTERVAL": "Intervall für Berichte",
+    "INTERVAL": "Intervall",
     "DAILY": "Täglich",
     "WEEKLY": "Wöchentlich",
     "MONTHLY": "Monatlich",
     "YEARLY": "Jährlich",
-    "SEND": "Bericht senden"
+    "SEND": "Senden"
   },
   "PROFILE": {
     "TITLE": "Profil",
-    "PERSONAL": "Persönliche Daten",
-    "NAME": "Name",
-    "EMAIL": "E-Mail",
-    "SECURITY": "Sicherheit",
-    "CHANGE_PW": "Passwort ändern",
-    "SETTINGS": "Einstellungen",
-    "LANG": "Sprache"
+    "LANGUAGE": "Sprache",
+    "GERMAN": "Deutsch",
+    "ENGLISH": "Englisch",
+    "LOGOUT": "Logout"
+  },
+  "CHANGE_PW": {
+    "TITLE": "Passwort",
+    "OPEN": "Passwort ändern"
   },
   "DSGVO": {
-    "TITLE": "DSGVO",
-    "TEXT_1": "Bevor du die App benutzen kannst, musst du den Datenschutzbestimmungen zustimmen.",
-    "TEXT_2": "Wenn du ablehnst, wirst du zurück zum Login geschickt.",
-    "DECLINE": "Ablehnen",
-    "ACCEPT": "Akzeptieren"
-  },
-  "PW": {
-    "TITLE": "Passwort ändern",
-    "OLD": "Altes Passwort",
-    "NEW": "Neues Passwort (mind. 8 Zeichen)",
-    "CONFIRM": "Neues Passwort bestätigen"
+    "TITLE": "Datenschutz (DSGVO)",
+    "TEXT": "Bitte akzeptiere die DSGVO, um fortzufahren.",
+    "ACCEPT": "Akzeptieren",
+    "DECLINE": "Ablehnen"
   }
 }

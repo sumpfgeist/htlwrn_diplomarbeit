@@ -1,48 +1,35 @@
-import { APP_INITIALIZER, importProvidersFrom } from '@angular/core';
-import { provideRouter, withPreloading, PreloadAllModules } from '@angular/router';
-import { provideHttpClient, HttpClient } from '@angular/common/http';
-
-import { IonicRouteStrategy } from '@ionic/angular';
-import { RouteReuseStrategy } from '@angular/router';
+import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideIonicAngular } from '@ionic/angular/standalone';
-
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { routes } from './app.routes';
 import { LanguageService } from './services/language.service';
 
-export function httpLoaderFactory(http: HttpClient) {
-  // Standard ngx-translate setup: ./assets/i18n/<lang>.json
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+export function initLanguage(language: LanguageService) {
+  return () => language.init();
 }
 
-export function initLang(langService: LanguageService) {
-  return () => langService.init();
-}
-
-export const appConfig = {
+export const appConfig: ApplicationConfig = {
   providers: [
     provideIonicAngular(),
-    provideHttpClient(),
-    provideRouter(routes, withPreloading(PreloadAllModules)),
+    provideHttpClient(withInterceptorsFromDi()),
+    provideRouter(routes),
 
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-
-    importProvidersFrom(
-      TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useFactory: httpLoaderFactory,
-          deps: [HttpClient],
-        },
-        defaultLanguage: 'de',
-      })
-    ),
+    // ngx-translate (v17+) style providers
+    provideTranslateService({
+      fallbackLang: 'de',
+      loader: provideTranslateHttpLoader({
+        prefix: '/assets/i18n/',
+        suffix: '.json',
+      }),
+    }),
 
     {
       provide: APP_INITIALIZER,
-      useFactory: initLang,
+      useFactory: initLanguage,
       deps: [LanguageService],
       multi: true,
     },

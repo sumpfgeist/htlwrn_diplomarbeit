@@ -1,56 +1,48 @@
 {
-  "COMMON": {
-    "SAVE": "Save"
+  "LOGIN": {
+    "TITLE": "Login",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "SIGN_IN": "Sign in"
   },
   "TABS": {
     "DASHBOARDS": "Dashboards",
-    "REPORTS": "Reports"
-  },
-  "LOGIN": {
-    "TITLE": "Login",
-    "USERNAME": "Username or E-Mail Address",
-    "PASSWORD": "Password",
-    "BUTTON": "Login",
-    "DSGVO": "Privacy"
+    "REPORTS": "Reports",
+    "PROFILE": "Profile"
   },
   "DASHBOARDS": {
-    "TITLE": "Dashboards",
-    "CHART_TITLE": "Chart",
-    "CHART_PLACEHOLDER": "Chart demo for year"
+    "TITLE": "Dashboard",
+    "CHART_TITLE": "Consumption overview",
+    "CHART_PLACEHOLDER": "Chart for year:",
+    "SELECT_ROOM": "Select room"
   },
   "REPORTS": {
     "TITLE": "Reports",
-    "GENERAL": "General Information",
-    "NAME": "Report Name",
+    "GENERAL": "General",
+    "NAME": "Name",
     "SETTINGS": "Settings",
-    "INTERVAL": "Report interval",
+    "INTERVAL": "Interval",
     "DAILY": "Daily",
     "WEEKLY": "Weekly",
     "MONTHLY": "Monthly",
     "YEARLY": "Yearly",
-    "SEND": "Send report"
+    "SEND": "Send"
   },
   "PROFILE": {
     "TITLE": "Profile",
-    "PERSONAL": "Personal data",
-    "NAME": "Name",
-    "EMAIL": "E-Mail",
-    "SECURITY": "Security",
-    "CHANGE_PW": "Change password",
-    "SETTINGS": "Settings",
-    "LANG": "Language"
+    "LANGUAGE": "Language",
+    "GERMAN": "German",
+    "ENGLISH": "English",
+    "LOGOUT": "Logout"
+  },
+  "CHANGE_PW": {
+    "TITLE": "Password",
+    "OPEN": "Change password"
   },
   "DSGVO": {
-    "TITLE": "Privacy",
-    "TEXT_1": "Before using the app, you must accept the privacy policy.",
-    "TEXT_2": "If you decline, you will be sent back to the login screen.",
-    "DECLINE": "Decline",
-    "ACCEPT": "Accept"
-  },
-  "PW": {
-    "TITLE": "Change password",
-    "OLD": "Old password",
-    "NEW": "New password (min. 8 characters)",
-    "CONFIRM": "Confirm new password"
+    "TITLE": "Privacy (GDPR)",
+    "TEXT": "Please accept the GDPR to continue.",
+    "ACCEPT": "Accept",
+    "DECLINE": "Decline"
   }
 }

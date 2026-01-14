@@ -1,41 +1,53 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { Router } from '@angular/router';
+import { IonicModule, ToastController } from '@ionic/angular';
+import { TranslatePipe } from '@ngx-translate/core';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
-  standalone: true,
   selector: 'app-dashboards',
   templateUrl: './dashboards.page.html',
   styleUrls: ['./dashboards.page.scss'],
-  imports: [CommonModule, IonicModule, RouterModule, FormsModule, TranslateModule],
+  standalone: true,
+  imports: [CommonModule, IonicModule, FormsModule, TranslatePipe],
 })
 export class DashboardsPage {
-  rooms = ['Raum 1', 'Raum 2'];
-  selectedRoom = this.rooms[0];
+  rooms: string[] = ['Wohnzimmer', 'Schlafzimmer', 'Küche', 'Bad'];
+  selectedRoom: string = this.rooms[0];
 
-  viewYear = new Date().getFullYear();
+  viewYear: number = new Date().getFullYear();
 
-  constructor(private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private toastCtrl: ToastController,
+  ) {}
 
-  prevYear() {
-    this.viewYear--;
-    this.loadChart();
-  }
-
-  nextYear() {
-    this.viewYear++;
-    this.loadChart();
-  }
-
-  loadChart() {
-    // TODO: API Call mit (selectedRoom, viewYear) und Chart updaten
-  }
-
-  async logout() {
-    // TODO: Token löschen wenn vorhanden
+  async logout(): Promise<void> {
+    this.auth.logout();
     await this.router.navigateByUrl('/login', { replaceUrl: true });
+  }
+
+  prevYear(): void {
+    this.viewYear -= 1;
+    void this.loadChart();
+  }
+
+  nextYear(): void {
+    this.viewYear += 1;
+    void this.loadChart();
+  }
+
+  async loadChart(): Promise<void> {
+    // Placeholder: plug your real chart data source in here.
+    const toast = await this.toastCtrl.create({
+      message: `Chart geladen: ${this.selectedRoom} (${this.viewYear})`,
+      duration: 800,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

@@ -2,78 +2,63 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { IonicModule, ModalController, ToastController } from '@ionic/angular';
-import { TranslateModule } from '@ngx-translate/core';
 
+import { TranslatePipe } from '@ngx-translate/core';
+import { AuthService } from '../../services/auth.service';
 import { DsgvoModalComponent } from '../../shared/dsgvo-modal/dsgvo-modal.component';
 
 @Component({
-  standalone: true,
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  imports: [CommonModule, IonicModule, FormsModule, TranslateModule],
+  standalone: true,
+  imports: [CommonModule, IonicModule, FormsModule, TranslatePipe],
 })
 export class LoginPage {
   username = '';
   password = '';
-  showPw = false;
-  isLoading = false;
 
   constructor(
+    private auth: AuthService,
     private router: Router,
     private modalCtrl: ModalController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
   ) {}
 
-  async login() {
-    if (!this.username.trim() || !this.password) {
-      (await this.toastCtrl.create({ message: 'Bitte Username & Passwort eingeben.', duration: 1500 })).present();
+  async onLogin(): Promise<void> {
+    const ok = this.auth.login(this.username, this.password);
+
+    if (!ok) {
+      const toast = await this.toastCtrl.create({
+        message: 'Login fehlgeschlagen',
+        duration: 1800,
+        position: 'bottom',
+      });
+      await toast.present();
       return;
     }
 
-    this.isLoading = true;
-    try {
-      const ok = await this.performLogin(this.username, this.password);
-      if (!ok) {
-        (await this.toastCtrl.create({ message: 'Login fehlgeschlagen.', duration: 1500 })).present();
+    // DSGVO modal only on first successful login
+    if (!this.auth.hasAcceptedDsgvo()) {
+      const modal = await this.modalCtrl.create({
+        component: DsgvoModalComponent,
+      });
+
+      await modal.present();
+      const { data } = await modal.onWillDismiss<{ accepted: boolean }>();
+
+      const accepted = !!data?.accepted;
+
+      if (!accepted) {
+        this.auth.logout();
+        await this.router.navigateByUrl('/login', { replaceUrl: true });
         return;
       }
 
-      const accepted = localStorage.getItem('dsgvoAccepted') === 'true';
-      if (!accepted) {
-        const okDsgvo = await this.openDsgvoModal();
-        if (!okDsgvo) {
-          // Token/Session würdest du hier löschen (wenn vorhanden)
-          this.password = '';
-          return; // bleibt am Login
-        }
-      }
-
-      await this.router.navigateByUrl('/tabs/dashboards', { replaceUrl: true });
-    } finally {
-      this.isLoading = false;
+      this.auth.setDsgvoAccepted(true);
     }
-  }
 
-  // Platzhalter: hier später echte API-Auth einbauen.
-  private async performLogin(_user: string, _pw: string): Promise<boolean> {
-    return true;
-  }
-
-  async openDsgvoModal(): Promise<boolean> {
-    const modal = await this.modalCtrl.create({
-      component: DsgvoModalComponent,
-      backdropDismiss: false,
-    });
-
-    await modal.present();
-    const { data } = await modal.onDidDismiss();
-    return data?.accepted === true;
-  }
-
-  async openDsgvo() {
-    await this.openDsgvoModal();
+    await this.router.navigateByUrl('/tabs/dashboards', { replaceUrl: true });
   }
 }

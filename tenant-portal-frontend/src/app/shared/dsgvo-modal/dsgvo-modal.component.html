@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-toolbar class="app-toolbar">
+  <ion-toolbar>
     <ion-title>{{ 'DSGVO.TITLE' | translate }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss(false)">
+      <ion-button (click)="dismiss(false)" aria-label="Close">
         <ion-icon name="close-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -10,17 +10,20 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div class="text">
-    <p>{{ 'DSGVO.TEXT_1' | translate }}</p>
-    <p>{{ 'DSGVO.TEXT_2' | translate }}</p>
-  </div>
+  <ion-card class="card-soft">
+    <ion-card-header>
+      <ion-card-title>{{ 'DSGVO.HEADER' | translate }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ 'DSGVO.TEXT' | translate }}</p>
 
-  <div class="actions">
-    <ion-button color="danger" expand="block" (click)="dismiss(false)">
-      {{ 'DSGVO.DECLINE' | translate }}
-    </ion-button>
-    <ion-button color="success" expand="block" (click)="dismiss(true)">
-      {{ 'DSGVO.ACCEPT' | translate }}
-    </ion-button>
-  </div>
+      <ion-button color="danger" expand="block" (click)="dismiss(false)">
+        {{ 'DSGVO.DECLINE' | translate }}
+      </ion-button>
+
+      <ion-button color="success" expand="block" (click)="dismiss(true)">
+        {{ 'DSGVO.ACCEPT' | translate }}
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

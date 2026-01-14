@@ -1,38 +1,10 @@
 <ion-header>
-  <ion-toolbar class="app-toolbar">
-    <ion-buttons slot="start">
-      <ion-button (click)="logout()">
-        <ion-icon name="close-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-
+  <ion-toolbar>
     <ion-title>{{ 'DASHBOARDS.TITLE' | translate }}</ion-title>
-
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/profile']">
-        <ion-icon name="person-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-
-  <ion-toolbar>
-    <ion-select interface="popover" [(ngModel)]="selectedRoom" (ionChange)="loadChart()">
-      <ion-select-option *ngFor="let r of rooms" [value]="r">{{ r }}</ion-select-option>
-    </ion-select>
-  </ion-toolbar>
-
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button fill="clear" (click)="prevYear()">
-        <ion-icon name="chevron-back-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-
-    <ion-title>{{ viewYear }}</ion-title>
-
-    <ion-buttons slot="end">
-      <ion-button fill="clear" (click)="nextYear()">
-        <ion-icon name="chevron-forward-outline"></ion-icon>
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        {{ 'PROFILE.LOGOUT' | translate }}
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -40,13 +12,40 @@
 
 <ion-content class="ion-padding">
   <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>{{ 'DASHBOARDS.SELECT_ROOM' | translate }}</ion-label>
+        <ion-select interface="popover" [(ngModel)]="selectedRoom" (ionChange)="loadChart()">
+          <ion-select-option *ngFor="let r of rooms" [value]="r">{{ r }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-toolbar class="ion-margin-top" color="transparent">
+        <ion-buttons slot="start">
+          <ion-button fill="clear" (click)="prevYear()">
+            <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+        <ion-title class="ion-text-center">{{ viewYear }}</ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button fill="clear" (click)="nextYear()">
+            <ion-icon name="chevron-forward-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
     <ion-card-header>
       <ion-card-title>
         {{ 'DASHBOARDS.CHART_TITLE' | translate }} ({{ selectedRoom }})
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <div class="chart-placeholder">
+      <div class="ion-text-center ion-padding">
         {{ 'DASHBOARDS.CHART_PLACEHOLDER' | translate }} {{ viewYear }}
       </div>
     </ion-card-content>

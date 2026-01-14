@@ -1,22 +1,33 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { IonicModule, ToastController } from '@ionic/angular';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.page.html',
   styleUrls: ['./reports.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, FormsModule, RouterModule],
+  imports: [CommonModule, IonicModule, FormsModule, TranslatePipe],
 })
 export class ReportsPage {
-  reportName = 'Neuer Bericht';
-  interval: 'daily' | 'weekly' | 'monthly' | 'yearly' = 'daily';
-  rooms = { room1: true, room2: false };
+  name = '';
+  interval: 'daily' | 'weekly' | 'monthly' | 'yearly' = 'monthly';
 
-  sendReport() {
-    console.log('send report', { name: this.reportName, interval: this.interval, rooms: this.rooms });
+  constructor(private router: Router, private toastCtrl: ToastController) {}
+
+  async close(): Promise<void> {
+    await this.router.navigateByUrl('/tabs/dashboards');
+  }
+
+  async send(): Promise<void> {
+    const toast = await this.toastCtrl.create({
+      message: 'Report wurde (demo) gesendet.',
+      duration: 1500,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

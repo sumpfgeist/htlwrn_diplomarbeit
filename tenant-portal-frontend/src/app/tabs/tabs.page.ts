@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  standalone: true,
   selector: 'app-tabs',
+  standalone: true,
+  imports: [IonicModule, RouterLink, TranslateModule],
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
-  imports: [CommonModule, IonicModule, RouterModule],
 })
 export class TabsPage {}

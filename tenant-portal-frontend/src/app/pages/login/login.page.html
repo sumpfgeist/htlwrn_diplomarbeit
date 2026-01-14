@@ -1,36 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'LOGIN.TITLE' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="ion-padding">
-  <div class="login-wrap">
-    <h1>{{ 'LOGIN.TITLE' | translate }}</h1>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">{{ 'LOGIN.USERNAME' | translate }}</ion-label>
+        <ion-input [(ngModel)]="username" autocomplete="username"></ion-input>
+      </ion-item>
 
-    <ion-item lines="none">
-      <ion-input
-        [label]="'LOGIN.USERNAME' | translate"
-        labelPlacement="stacked"
-        autocomplete="username"
-        [(ngModel)]="username">
-      </ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="stacked">{{ 'LOGIN.PASSWORD' | translate }}</ion-label>
+        <ion-input [(ngModel)]="password" type="password" autocomplete="current-password"></ion-input>
+      </ion-item>
 
-    <ion-item lines="none">
-      <ion-input
-        [label]="'LOGIN.PASSWORD' | translate"
-        labelPlacement="stacked"
-        [type]="showPw ? 'text' : 'password'"
-        autocomplete="current-password"
-        [(ngModel)]="password">
-      </ion-input>
-
-      <ion-button fill="clear" slot="end" (click)="showPw = !showPw" aria-label="Toggle password visibility">
-        <ion-icon [name]="showPw ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+      <ion-button expand="block" class="ion-margin-top" (click)="onLogin()">
+        {{ 'LOGIN.SIGN_IN' | translate }}
       </ion-button>
-    </ion-item>
-
-    <ion-button expand="block" [disabled]="isLoading" (click)="login()">
-      {{ 'LOGIN.BUTTON' | translate }}
-    </ion-button>
-
-    <ion-button fill="clear" size="small" (click)="openDsgvo()">
-      {{ 'LOGIN.DSGVO' | translate }}
-    </ion-button>
-  </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
