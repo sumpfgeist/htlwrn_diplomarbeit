@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar class="app-toolbar">
-    <ion-title>DSGVO</ion-title>
+    <ion-title>{{ 'DSGVO.TITLE' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss(false)">
         <ion-icon name="close-outline"></ion-icon>
@@ -10,17 +10,17 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h2 class="title">DSGVO</h2>
-
   <div class="text">
-    <!-- TODO: Replace with your real DSGVO content -->
-    <p><b>Verantwortlicher für die Datenverarbeitung ist:</b><br>Für-Gründer.de GmbH<br>...</p>
-    <p>1. Zugriffsdaten und Hosting ...</p>
-    <p>2. Datenerhebung und -verwendung zur Vertragsabwicklung ...</p>
+    <p>{{ 'DSGVO.TEXT_1' | translate }}</p>
+    <p>{{ 'DSGVO.TEXT_2' | translate }}</p>
   </div>
 
-  <div class="btn-row">
-    <ion-button color="danger" expand="block" (click)="dismiss(false)">Decline</ion-button>
-    <ion-button color="success" expand="block" (click)="dismiss(true)">Accept</ion-button>
+  <div class="actions">
+    <ion-button color="danger" expand="block" (click)="dismiss(false)">
+      {{ 'DSGVO.DECLINE' | translate }}
+    </ion-button>
+    <ion-button color="success" expand="block" (click)="dismiss(true)">
+      {{ 'DSGVO.ACCEPT' | translate }}
+    </ion-button>
   </div>
 </ion-content>

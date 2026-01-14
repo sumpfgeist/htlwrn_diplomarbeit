@@ -3,9 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/dashboards"></ion-back-button>
     </ion-buttons>
-    <ion-title>Profil</ion-title>
+
+    <ion-title>{{ 'PROFILE.TITLE' | translate }}</ion-title>
+
     <ion-buttons slot="end">
-      <ion-button routerLink="/tabs/dashboards">
+      <ion-button (click)="close()">
         <ion-icon name="close-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -13,54 +15,53 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-card class="card-soft">
+  <ion-card>
     <ion-card-header>
-      <ion-card-title>Persönliche Daten</ion-card-title>
+      <ion-card-title>{{ 'PROFILE.PERSONAL' | translate }}</ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
       <ion-item lines="none">
-        <ion-input label="Name" labelPlacement="stacked" [(ngModel)]="name"></ion-input>
+        <ion-input [label]="'PROFILE.NAME' | translate" labelPlacement="stacked" [(ngModel)]="name"></ion-input>
       </ion-item>
       <ion-item lines="none">
-        <ion-input label="E-Mail" labelPlacement="stacked" [(ngModel)]="email"></ion-input>
+        <ion-input [label]="'PROFILE.EMAIL' | translate" labelPlacement="stacked" [(ngModel)]="email"></ion-input>
       </ion-item>
     </ion-card-content>
   </ion-card>
 
-  <ion-card class="card-soft">
+  <ion-card>
     <ion-card-header>
-      <ion-card-title>Sicherheit</ion-card-title>
+      <ion-card-title>{{ 'PROFILE.SECURITY' | translate }}</ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
-      <ion-item lines="none">
-        <ion-input label="Passwort" labelPlacement="stacked" value="********" readonly></ion-input>
-      </ion-item>
-      <ion-button fill="outline" expand="block">Passwort ändern</ion-button>
+      <ion-button fill="outline" expand="block" (click)="openChangePassword()">
+        {{ 'PROFILE.CHANGE_PW' | translate }}
+      </ion-button>
     </ion-card-content>
   </ion-card>
 
-  <ion-card class="card-soft">
+  <ion-card>
     <ion-card-header>
-      <ion-card-title>Einstellungen</ion-card-title>
+      <ion-card-title>{{ 'PROFILE.SETTINGS' | translate }}</ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
       <ion-item lines="none">
-        <ion-select label="Sprache" labelPlacement="stacked" [(ngModel)]="lang">
-          <ion-select-option value="de">🇩🇪 Deutsch</ion-select-option>
-          <ion-select-option value="en">🇬🇧 English</ion-select-option>
+        <ion-select
+          [label]="'PROFILE.LANG' | translate"
+          labelPlacement="stacked"
+          [(ngModel)]="lang"
+          (ionChange)="onLangChange()">
+          <ion-select-option value="de">Deutsch</ion-select-option>
+          <ion-select-option value="en">English</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-card-content>
   </ion-card>
 
-  <ion-card class="card-soft">
-    <ion-card-header>
-      <ion-card-title>Berichte</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-button expand="block" fill="solid" color="medium">Bericht Historie</ion-button>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-button expand="block" size="large" (click)="save()">Speichern</ion-button>
+  <ion-button expand="block" size="large" (click)="save()">
+    {{ 'COMMON.SAVE' | translate }}
+  </ion-button>
 </ion-content>

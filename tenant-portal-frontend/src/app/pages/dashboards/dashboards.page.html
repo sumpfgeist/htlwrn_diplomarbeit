@@ -1,10 +1,12 @@
 <ion-header>
   <ion-toolbar class="app-toolbar">
     <ion-buttons slot="start">
-      <ion-button>
+      <ion-button (click)="logout()">
         <ion-icon name="close-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+
+    <ion-title>{{ 'DASHBOARDS.TITLE' | translate }}</ion-title>
 
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/profile']">
@@ -14,50 +16,39 @@
   </ion-toolbar>
 
   <ion-toolbar>
-    <div class="filter-row">
-      <ion-select interface="popover" value="Raum 1">
-        <ion-select-option value="Raum 1">Raum 1</ion-select-option>
-        <ion-select-option value="Raum 2">Raum 2</ion-select-option>
-      </ion-select>
+    <ion-select interface="popover" [(ngModel)]="selectedRoom" (ionChange)="loadChart()">
+      <ion-select-option *ngFor="let r of rooms" [value]="r">{{ r }}</ion-select-option>
+    </ion-select>
+  </ion-toolbar>
 
-      <div class="year-nav">
-        <ion-button fill="clear"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-        <div class="year">2020</div>
-        <ion-button fill="clear"><ion-icon name="chevron-forward-outline"></ion-icon></ion-button>
-      </div>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="prevYear()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
 
-      <ion-select interface="popover" value="Jahr">
-        <ion-select-option value="Tag">Tag</ion-select-option>
-        <ion-select-option value="Woche">Woche</ion-select-option>
-        <ion-select-option value="Monat">Monat</ion-select-option>
-        <ion-select-option value="Jahr">Jahr</ion-select-option>
-      </ion-select>
-    </div>
+    <ion-title>{{ viewYear }}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="nextYear()">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-card class="card-soft">
+  <ion-card>
     <ion-card-header>
-      <ion-card-title class="center-title">ELZ</ion-card-title>
+      <ion-card-title>
+        {{ 'DASHBOARDS.CHART_TITLE' | translate }} ({{ selectedRoom }})
+      </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <div class="legend">
-        <span class="dot"></span> kWh
+      <div class="chart-placeholder">
+        {{ 'DASHBOARDS.CHART_PLACEHOLDER' | translate }} {{ viewYear }}
       </div>
-      <div class="chart-placeholder">[Chart hier]</div>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card class="card-soft">
-    <ion-card-header>
-      <ion-card-title class="center-title">Wasser Zähler</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div class="legend">
-        <span class="dot alt"></span> Liter (l)
-      </div>
-      <div class="chart-placeholder">[Chart hier]</div>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -1,10 +1,13 @@
 <ion-header>
   <ion-toolbar class="app-toolbar">
     <ion-buttons slot="start">
-      <ion-button>
+      <ion-button (click)="close()">
         <ion-icon name="close-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+
+    <ion-title>{{ 'REPORTS.TITLE' | translate }}</ion-title>
+
     <ion-buttons slot="end">
       <ion-button [routerLink]="['/profile']">
         <ion-icon name="person-circle-outline"></ion-icon>
@@ -14,42 +17,51 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h1 class="page-title">Berichte</h1>
-
-  <ion-card class="card-soft">
+  <ion-card>
     <ion-card-header>
-      <ion-card-title>Allgemeine Informationen</ion-card-title>
+      <ion-card-title>{{ 'REPORTS.GENERAL' | translate }}</ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
       <ion-item lines="none">
-        <ion-input label="Bericht Name" labelPlacement="stacked" [(ngModel)]="reportName"></ion-input>
+        <ion-input
+          [label]="'REPORTS.NAME' | translate"
+          labelPlacement="stacked"
+          [(ngModel)]="reportName">
+        </ion-input>
       </ion-item>
     </ion-card-content>
   </ion-card>
 
-  <ion-card class="card-soft">
+  <ion-card>
     <ion-card-header>
-      <ion-card-title>Einstellungen</ion-card-title>
+      <ion-card-title>{{ 'REPORTS.SETTINGS' | translate }}</ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
-      <div class="section-title">Im Bericht benutzte Zähler / Räume</div>
       <ion-item lines="none">
         <ion-checkbox [(ngModel)]="rooms.room1">Raum 1</ion-checkbox>
       </ion-item>
+
       <ion-item lines="none">
         <ion-checkbox [(ngModel)]="rooms.room2">Raum 2</ion-checkbox>
       </ion-item>
 
       <ion-item lines="none">
-        <ion-select label="Intervall für Berichte" labelPlacement="stacked" [(ngModel)]="interval">
-          <ion-select-option value="daily">Täglich</ion-select-option>
-          <ion-select-option value="weekly">Wöchentlich</ion-select-option>
-          <ion-select-option value="monthly">Monatlich</ion-select-option>
-          <ion-select-option value="yearly">Jährlich</ion-select-option>
+        <ion-select
+          [label]="'REPORTS.INTERVAL' | translate"
+          labelPlacement="stacked"
+          [(ngModel)]="interval">
+          <ion-select-option value="daily">{{ 'REPORTS.DAILY' | translate }}</ion-select-option>
+          <ion-select-option value="weekly">{{ 'REPORTS.WEEKLY' | translate }}</ion-select-option>
+          <ion-select-option value="monthly">{{ 'REPORTS.MONTHLY' | translate }}</ion-select-option>
+          <ion-select-option value="yearly">{{ 'REPORTS.YEARLY' | translate }}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="block" size="large" (click)="sendReport()">Bericht senden</ion-button>
+  <ion-button expand="block" size="large" (click)="sendReport()">
+    {{ 'REPORTS.SEND' | translate }}
+  </ion-button>
 </ion-content>

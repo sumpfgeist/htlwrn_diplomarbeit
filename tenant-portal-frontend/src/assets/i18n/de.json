@@ -1,0 +1,56 @@
+{
+  "COMMON": {
+    "SAVE": "Speichern"
+  },
+  "TABS": {
+    "DASHBOARDS": "Dashboards",
+    "REPORTS": "Reports"
+  },
+  "LOGIN": {
+    "TITLE": "Login",
+    "USERNAME": "Username oder E-Mail Adresse",
+    "PASSWORD": "Passwort",
+    "BUTTON": "Login",
+    "DSGVO": "DSGVO"
+  },
+  "DASHBOARDS": {
+    "TITLE": "Dashboards",
+    "CHART_TITLE": "Diagramm",
+    "CHART_PLACEHOLDER": "Chart Demo für Jahr"
+  },
+  "REPORTS": {
+    "TITLE": "Reports",
+    "GENERAL": "Allgemeine Informationen",
+    "NAME": "Bericht Name",
+    "SETTINGS": "Einstellungen",
+    "INTERVAL": "Intervall für Berichte",
+    "DAILY": "Täglich",
+    "WEEKLY": "Wöchentlich",
+    "MONTHLY": "Monatlich",
+    "YEARLY": "Jährlich",
+    "SEND": "Bericht senden"
+  },
+  "PROFILE": {
+    "TITLE": "Profil",
+    "PERSONAL": "Persönliche Daten",
+    "NAME": "Name",
+    "EMAIL": "E-Mail",
+    "SECURITY": "Sicherheit",
+    "CHANGE_PW": "Passwort ändern",
+    "SETTINGS": "Einstellungen",
+    "LANG": "Sprache"
+  },
+  "DSGVO": {
+    "TITLE": "DSGVO",
+    "TEXT_1": "Bevor du die App benutzen kannst, musst du den Datenschutzbestimmungen zustimmen.",
+    "TEXT_2": "Wenn du ablehnst, wirst du zurück zum Login geschickt.",
+    "DECLINE": "Ablehnen",
+    "ACCEPT": "Akzeptieren"
+  },
+  "PW": {
+    "TITLE": "Passwort ändern",
+    "OLD": "Altes Passwort",
+    "NEW": "Neues Passwort (mind. 8 Zeichen)",
+    "CONFIRM": "Neues Passwort bestätigen"
+  }
+}

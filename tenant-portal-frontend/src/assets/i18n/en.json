@@ -1,0 +1,56 @@
+{
+  "COMMON": {
+    "SAVE": "Save"
+  },
+  "TABS": {
+    "DASHBOARDS": "Dashboards",
+    "REPORTS": "Reports"
+  },
+  "LOGIN": {
+    "TITLE": "Login",
+    "USERNAME": "Username or E-Mail Address",
+    "PASSWORD": "Password",
+    "BUTTON": "Login",
+    "DSGVO": "Privacy"
+  },
+  "DASHBOARDS": {
+    "TITLE": "Dashboards",
+    "CHART_TITLE": "Chart",
+    "CHART_PLACEHOLDER": "Chart demo for year"
+  },
+  "REPORTS": {
+    "TITLE": "Reports",
+    "GENERAL": "General Information",
+    "NAME": "Report Name",
+    "SETTINGS": "Settings",
+    "INTERVAL": "Report interval",
+    "DAILY": "Daily",
+    "WEEKLY": "Weekly",
+    "MONTHLY": "Monthly",
+    "YEARLY": "Yearly",
+    "SEND": "Send report"
+  },
+  "PROFILE": {
+    "TITLE": "Profile",
+    "PERSONAL": "Personal data",
+    "NAME": "Name",
+    "EMAIL": "E-Mail",
+    "SECURITY": "Security",
+    "CHANGE_PW": "Change password",
+    "SETTINGS": "Settings",
+    "LANG": "Language"
+  },
+  "DSGVO": {
+    "TITLE": "Privacy",
+    "TEXT_1": "Before using the app, you must accept the privacy policy.",
+    "TEXT_2": "If you decline, you will be sent back to the login screen.",
+    "DECLINE": "Decline",
+    "ACCEPT": "Accept"
+  },
+  "PW": {
+    "TITLE": "Change password",
+    "OLD": "Old password",
+    "NEW": "New password (min. 8 characters)",
+    "CONFIRM": "Confirm new password"
+  }
+}

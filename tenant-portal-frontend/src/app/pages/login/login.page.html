@@ -1,39 +1,36 @@
 <ion-content class="ion-padding">
-  <div class="login-shell">
-    <div class="brand">
-      <img class="logo" src="assets/logo.svg" alt="Logo">
-    </div>
+  <div class="login-wrap">
+    <h1>{{ 'LOGIN.TITLE' | translate }}</h1>
 
-    <div class="login-card card-soft">
-      <ion-item lines="none">
-        <ion-input
-          label="Username or E-Mail Adress"
-          labelPlacement="stacked"
-          autocomplete="username"
-          [(ngModel)]="username">
-        </ion-input>
-      </ion-item>
+    <ion-item lines="none">
+      <ion-input
+        [label]="'LOGIN.USERNAME' | translate"
+        labelPlacement="stacked"
+        autocomplete="username"
+        [(ngModel)]="username">
+      </ion-input>
+    </ion-item>
 
-      <ion-item lines="none">
-        <ion-input
-          label="Passwort"
-          labelPlacement="stacked"
-          [type]="showPw ? 'text' : 'password'"
-          autocomplete="current-password"
-          [(ngModel)]="password">
-        </ion-input>
-        <ion-button fill="clear" slot="end" (click)="showPw = !showPw" aria-label="Toggle password visibility">
-          <ion-icon [name]="showPw ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
-        </ion-button>
-      </ion-item>
+    <ion-item lines="none">
+      <ion-input
+        [label]="'LOGIN.PASSWORD' | translate"
+        labelPlacement="stacked"
+        [type]="showPw ? 'text' : 'password'"
+        autocomplete="current-password"
+        [(ngModel)]="password">
+      </ion-input>
 
-      <div class="actions">
-        <ion-button expand="block" (click)="login()">Login</ion-button>
-      </div>
+      <ion-button fill="clear" slot="end" (click)="showPw = !showPw" aria-label="Toggle password visibility">
+        <ion-icon [name]="showPw ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+      </ion-button>
+    </ion-item>
 
-      <div class="legal">
-        <ion-button fill="clear" size="small" (click)="openDsgvo()">DSGVO</ion-button>
-      </div>
-    </div>
+    <ion-button expand="block" [disabled]="isLoading" (click)="login()">
+      {{ 'LOGIN.BUTTON' | translate }}
+    </ion-button>
+
+    <ion-button fill="clear" size="small" (click)="openDsgvo()">
+      {{ 'LOGIN.DSGVO' | translate }}
+    </ion-button>
   </div>
 </ion-content>
