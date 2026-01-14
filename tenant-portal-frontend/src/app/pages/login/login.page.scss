@@ -1,0 +1,39 @@
+.login-shell {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  align-items: center;
+}
+
+.brand {
+  justify-self: start;
+  align-self: start;
+  padding-top: 10px;
+
+  .logo {
+    width: 54px;
+    height: 54px;
+  }
+}
+
+.login-card {
+  width: min(360px, 92vw);
+  margin: 0 auto;
+  padding: 18px;
+  background: #fff;
+}
+
+.actions {
+  margin-top: 14px;
+}
+
+.legal {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+}
+ion-content.login-bg {
+  --background: transparent;
+  background-size: cover;
+  background-position: center;
+}

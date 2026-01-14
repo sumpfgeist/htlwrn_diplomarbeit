@@ -1,0 +1,45 @@
+.filter-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 4px 10px;
+}
+
+.year-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  .year { font-weight: 700; min-width: 60px; text-align: center; }
+}
+
+.center-title {
+  text-align: center;
+  font-weight: 800;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 13px;
+
+  .dot {
+    width: 18px; height: 10px; border-radius: 3px;
+    background: #f4c20d;
+    &.alt { background: #b400ff; }
+  }
+}
+
+.chart-placeholder {
+  height: 220px;
+  border: 1px dashed rgba(0,0,0,.2);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: rgba(0,0,0,.5);
+}
