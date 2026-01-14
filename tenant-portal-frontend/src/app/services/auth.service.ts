@@ -58,4 +58,9 @@ export class AuthService {
     localStorage.setItem(this.keyPassword, newPassword);
     return true;
   }
+
+  isAuthenticated(): boolean {
+    return this.isLoggedIn();
+  }
+
 }

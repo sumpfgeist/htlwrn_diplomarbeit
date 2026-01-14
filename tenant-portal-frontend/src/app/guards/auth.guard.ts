@@ -1,20 +1,19 @@
-import { CanActivateFn, Router } from '@angular/router';
-import { inject } from '@angular/core';
+import { Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
-export const authGuard: CanActivateFn = () => {
-  const auth = inject(AuthService);
-  const router = inject(Router);
+@Injectable({ providedIn: 'root' })
+export class AuthGuard implements CanActivate {
+  constructor(private auth: AuthService, private router: Router) {}
 
-  if (!auth.isLoggedIn()) {
-    return router.parseUrl('/login');
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (this.auth.isAuthenticated()) return true;
+    this.router.navigate(['/login']);
+    return false;
   }
-
-  // Extra safety: if someone bypasses the DSGVO modal, kick them back to login.
-  if (!auth.hasAcceptedDsgvo()) {
-    auth.logout();
-    return router.parseUrl('/login');
-  }
-
-  return true;
-};
+}

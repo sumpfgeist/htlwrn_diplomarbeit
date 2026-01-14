@@ -1,48 +1,65 @@
 {
   "LOGIN": {
     "TITLE": "Login",
-    "USERNAME": "Username",
+    "USERNAME": "Username or E-Mail Address",
     "PASSWORD": "Password",
-    "SIGN_IN": "Sign in"
+    "BUTTON": "Login",
+    "DSGVO": "GDPR",
+    "ERROR": "Login failed",
+    "FILL_ALL": "Please enter username and password",
+    "MISSING": "Please enter username and password."
+  },
+  "DSGVO": {
+    "TITLE": "GDPR",
+    "INTRO": "Please accept the privacy terms to continue.",
+    "P1": "Data is used only for portal functionality.",
+    "P2": "No sharing with third parties without legal basis.",
+    "P3": "You can revoke your consent later.",
+    "DECLINE": "Decline",
+    "ACCEPT": "Accept",
+    "MUST_ACCEPT": "Without consent you cannot use the portal."
   },
   "TABS": {
     "DASHBOARDS": "Dashboards",
-    "REPORTS": "Reports",
-    "PROFILE": "Profile"
+    "REPORTS": "Reports"
   },
   "DASHBOARDS": {
-    "TITLE": "Dashboard",
-    "CHART_TITLE": "Consumption overview",
-    "CHART_PLACEHOLDER": "Chart for year:",
-    "SELECT_ROOM": "Select room"
+    "TITLE": "Dashboards",
+    "CHART_TITLE": "Chart",
+    "CHART_PLACEHOLDER": "Placeholder data for year"
   },
   "REPORTS": {
     "TITLE": "Reports",
-    "GENERAL": "General",
-    "NAME": "Name",
+    "GENERAL": "General Information",
+    "NAME": "Report name",
     "SETTINGS": "Settings",
-    "INTERVAL": "Interval",
+    "INTERVAL": "Report interval",
     "DAILY": "Daily",
     "WEEKLY": "Weekly",
     "MONTHLY": "Monthly",
     "YEARLY": "Yearly",
-    "SEND": "Send"
+    "SEND": "Send report"
   },
   "PROFILE": {
     "TITLE": "Profile",
+    "PERSONAL_DATA": "Personal data",
+    "SECURITY": "Security",
+    "SETTINGS": "Settings",
     "LANGUAGE": "Language",
-    "GERMAN": "German",
-    "ENGLISH": "English",
-    "LOGOUT": "Logout"
+    "CHANGE_PASSWORD": "Change password",
+    "SAVE": "Save"
   },
   "CHANGE_PW": {
-    "TITLE": "Password",
-    "OPEN": "Change password"
-  },
-  "DSGVO": {
-    "TITLE": "Privacy (GDPR)",
-    "TEXT": "Please accept the GDPR to continue.",
-    "ACCEPT": "Accept",
-    "DECLINE": "Decline"
+    "TITLE": "Change password",
+    "OLD": "Old password",
+    "NEW": "New password",
+    "CONFIRM": "Confirm new password",
+    "CANCEL": "Cancel",
+    "SAVE": "Save",
+    "FILL_ALL": "Please fill all fields",
+    "WEAK": "New password must be at least 8 characters",
+    "MISMATCH": "Passwords do not match",
+    "SUCCESS": "Password changed successfully",
+    "ERROR": "Failed to change password"
   }
 }

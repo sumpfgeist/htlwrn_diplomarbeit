@@ -1,40 +1,56 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="app-toolbar">
     <ion-buttons slot="start">
       <ion-button (click)="close()">
-        <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
+        <ion-icon name="close-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+
     <ion-title>{{ 'REPORTS.TITLE' | translate }}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/tabs/profile']">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-card>
+  <ion-card class="card-soft">
     <ion-card-header>
       <ion-card-title>{{ 'REPORTS.GENERAL' | translate }}</ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
       <ion-item>
         <ion-input
-          [(ngModel)]="name"
           [label]="'REPORTS.NAME' | translate"
           labelPlacement="stacked"
+          [(ngModel)]="reportName"
         ></ion-input>
       </ion-item>
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card class="card-soft">
     <ion-card-header>
       <ion-card-title>{{ 'REPORTS.SETTINGS' | translate }}</ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
+      <ion-item lines="none">
+        <ion-checkbox [(ngModel)]="rooms.room1">Raum 1</ion-checkbox>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-checkbox [(ngModel)]="rooms.room2">Raum 2</ion-checkbox>
+      </ion-item>
+
       <ion-item>
         <ion-select
-          [(ngModel)]="interval"
           [label]="'REPORTS.INTERVAL' | translate"
           labelPlacement="stacked"
+          [(ngModel)]="interval"
         >
           <ion-select-option value="daily">{{ 'REPORTS.DAILY' | translate }}</ion-select-option>
           <ion-select-option value="weekly">{{ 'REPORTS.WEEKLY' | translate }}</ion-select-option>
@@ -43,7 +59,7 @@
         </ion-select>
       </ion-item>
 
-      <ion-button expand="block" class="ion-margin-top" (click)="send()">
+      <ion-button expand="block" size="large" (click)="sendReport()">
         {{ 'REPORTS.SEND' | translate }}
       </ion-button>
     </ion-card-content>

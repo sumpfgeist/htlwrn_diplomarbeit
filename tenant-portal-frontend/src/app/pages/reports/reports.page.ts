@@ -1,33 +1,39 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { IonicModule, ToastController } from '@ionic/angular';
-import { TranslatePipe } from '@ngx-translate/core';
+import { Router, RouterLink } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-reports',
+  standalone: true,
+  imports: [CommonModule, IonicModule, FormsModule, RouterLink, TranslateModule],
   templateUrl: './reports.page.html',
   styleUrls: ['./reports.page.scss'],
-  standalone: true,
-  imports: [CommonModule, IonicModule, FormsModule, TranslatePipe],
 })
 export class ReportsPage {
-  name = '';
+  reportName = 'Mein Bericht';
   interval: 'daily' | 'weekly' | 'monthly' | 'yearly' = 'monthly';
 
-  constructor(private router: Router, private toastCtrl: ToastController) {}
+  rooms = {
+    room1: true,
+    room2: false,
+  };
 
-  async close(): Promise<void> {
-    await this.router.navigateByUrl('/tabs/dashboards');
+  constructor(private router: Router) {}
+
+  close() {
+    // Du bist in Tabs, also navigier sauber zurück
+    this.router.navigateByUrl('/tabs/dashboards');
   }
 
-  async send(): Promise<void> {
-    const toast = await this.toastCtrl.create({
-      message: 'Report wurde (demo) gesendet.',
-      duration: 1500,
-      position: 'bottom',
+  sendReport() {
+    // TODO: echte Report-API
+    console.log('Sending report', {
+      reportName: this.reportName,
+      interval: this.interval,
+      rooms: this.rooms,
     });
-    await toast.present();
   }
 }

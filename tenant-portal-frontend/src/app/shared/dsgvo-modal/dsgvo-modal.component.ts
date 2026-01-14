@@ -1,20 +1,20 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dsgvo-modal',
   standalone: true,
+  imports: [IonicModule, CommonModule, TranslateModule],
   templateUrl: './dsgvo-modal.component.html',
   styleUrls: ['./dsgvo-modal.component.scss'],
-  imports: [CommonModule, IonicModule, TranslateModule],
 })
 export class DsgvoModalComponent {
-  private modal = inject(ModalController);
+  constructor(private modalCtrl: ModalController) {}
 
-  // accepted = true/false
-  dismiss(accepted: boolean): void {
-    this.modal.dismiss({ accepted });
+  async dismiss(accepted: boolean) {
+    // wichtig: await, sonst bleibt gerne mal ein Backdrop hängen
+    await this.modalCtrl.dismiss({ accepted }, 'dsgvo');
   }
 }

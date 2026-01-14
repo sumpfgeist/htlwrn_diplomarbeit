@@ -1,25 +1,37 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>{{ 'LOGIN.TITLE' | translate }}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="ion-padding">
-  <ion-card>
-    <ion-card-content>
-      <ion-item>
-        <ion-label position="stacked">{{ 'LOGIN.USERNAME' | translate }}</ion-label>
-        <ion-input [(ngModel)]="username" autocomplete="username"></ion-input>
-      </ion-item>
+  <div class="login-wrap">
+    <h2>{{ 'LOGIN.TITLE' | translate }}</h2>
 
-      <ion-item>
-        <ion-label position="stacked">{{ 'LOGIN.PASSWORD' | translate }}</ion-label>
-        <ion-input [(ngModel)]="password" type="password" autocomplete="current-password"></ion-input>
-      </ion-item>
+    <ion-item lines="none">
+      <ion-input
+        [label]="'LOGIN.USERNAME' | translate"
+        labelPlacement="stacked"
+        autocomplete="username"
+        [(ngModel)]="username"
+      ></ion-input>
+    </ion-item>
 
-      <ion-button expand="block" class="ion-margin-top" (click)="onLogin()">
-        {{ 'LOGIN.SIGN_IN' | translate }}
+    <ion-item lines="none">
+      <ion-input
+        [label]="'LOGIN.PASSWORD' | translate"
+        labelPlacement="stacked"
+        [type]="showPw ? 'text' : 'password'"
+        autocomplete="current-password"
+        [(ngModel)]="password"
+      ></ion-input>
+
+      <ion-button
+        fill="clear"
+        slot="end"
+        (click)="togglePw()"
+        aria-label="Toggle password visibility"
+      >
+        <ion-icon [name]="showPw ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
       </ion-button>
-    </ion-card-content>
-  </ion-card>
+    </ion-item>
+
+    <ion-button expand="block" class="ion-margin-top" (click)="onLogin()" [disabled]="loading">
+      {{ 'LOGIN.BUTTON' | translate }}
+    </ion-button>
+  </div>
 </ion-content>

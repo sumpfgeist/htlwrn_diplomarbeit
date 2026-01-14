@@ -1,22 +1,46 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
-  { path: 'login', loadComponent: () => import('./pages/login/login.page').then((m) => m.LoginPage) },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.page').then((m) => m.LoginPage),
+  },
+
+  {
+    path: 'dsgvo',
+    canActivate: [AuthGuard],
+    loadComponent: () => import('./pages/dsgvo/dsgvo.page').then((m) => m.DsgvoPage),
+  },
 
   {
     path: 'tabs',
-    canActivate: [authGuard],
+    canActivate: [AuthGuard],
     loadComponent: () => import('./pages/tabs/tabs.page').then((m) => m.TabsPage),
     children: [
+      {
+        path: 'dashboards',
+        loadComponent: () =>
+          import('./pages/dashboards/dashboards.page').then((m) => m.DashboardsPage),
+      },
+      {
+        path: 'reports',
+        loadComponent: () =>
+          import('./pages/reports/reports.page').then((m) => m.ReportsPage),
+      },
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import('./pages/profile/profile.page').then((m) => m.ProfilePage),
+      },
       { path: '', redirectTo: 'dashboards', pathMatch: 'full' },
-      { path: 'dashboards', loadComponent: () => import('./pages/dashboards/dashboards.page').then((m) => m.DashboardsPage) },
-      { path: 'reports', loadComponent: () => import('./pages/reports/reports.page').then((m) => m.ReportsPage) },
-      { path: 'profile', loadComponent: () => import('./pages/profile/profile.page').then((m) => m.ProfilePage) },
     ],
   },
 
   { path: '**', redirectTo: 'login' },
 ];
+
+// backwards-compat alias (some files import appRoutes, others import routes)
+export const appRoutes = routes;

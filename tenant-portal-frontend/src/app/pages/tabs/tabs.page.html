@@ -1,18 +1,15 @@
 <ion-tabs>
+  <ion-router-outlet></ion-router-outlet>
+
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="dashboards" [routerLink]="['/tabs/dashboards']">
-      <ion-icon name="bar-chart-outline"></ion-icon>
+      <ion-icon name="home-outline"></ion-icon>
       <ion-label>{{ 'TABS.DASHBOARDS' | translate }}</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="reports" [routerLink]="['/tabs/reports']">
-      <ion-icon name="document-text-outline"></ion-icon>
+      <ion-icon name="stats-chart-outline"></ion-icon>
       <ion-label>{{ 'TABS.REPORTS' | translate }}</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="profile" [routerLink]="['/tabs/profile']">
-      <ion-icon name="person-outline"></ion-icon>
-      <ion-label>{{ 'TABS.PROFILE' | translate }}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

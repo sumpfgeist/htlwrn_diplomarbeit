@@ -1,53 +1,43 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { IonicModule, ToastController } from '@ionic/angular';
-import { TranslatePipe } from '@ngx-translate/core';
-
+import { Router, RouterLink } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboards',
+  standalone: true,
+  imports: [CommonModule, IonicModule, FormsModule, RouterLink, TranslateModule],
   templateUrl: './dashboards.page.html',
   styleUrls: ['./dashboards.page.scss'],
-  standalone: true,
-  imports: [CommonModule, IonicModule, FormsModule, TranslatePipe],
 })
 export class DashboardsPage {
-  rooms: string[] = ['Wohnzimmer', 'Schlafzimmer', 'Küche', 'Bad'];
-  selectedRoom: string = this.rooms[0];
+  rooms: string[] = ['Raum 1', 'Raum 2'];
+  selectedRoom = this.rooms[0];
 
-  viewYear: number = new Date().getFullYear();
+  viewYear = new Date().getFullYear();
 
-  constructor(
-    private auth: AuthService,
-    private router: Router,
-    private toastCtrl: ToastController,
-  ) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
-  async logout(): Promise<void> {
+  logout() {
     this.auth.logout();
-    await this.router.navigateByUrl('/login', { replaceUrl: true });
+    this.router.navigateByUrl('/login');
   }
 
-  prevYear(): void {
-    this.viewYear -= 1;
-    void this.loadChart();
+  prevYear() {
+    this.viewYear--;
+    this.loadChart();
   }
 
-  nextYear(): void {
-    this.viewYear += 1;
-    void this.loadChart();
+  nextYear() {
+    this.viewYear++;
+    this.loadChart();
   }
 
-  async loadChart(): Promise<void> {
-    // Placeholder: plug your real chart data source in here.
-    const toast = await this.toastCtrl.create({
-      message: `Chart geladen: ${this.selectedRoom} (${this.viewYear})`,
-      duration: 800,
-      position: 'bottom',
-    });
-    await toast.present();
+  loadChart() {
+    // TODO: hier später echte API holen (z.B. abhängig von Raum + viewYear)
+    // Aktuell reicht es, dass UI und Flow stimmt.
   }
 }

@@ -46,17 +46,41 @@ export class ChangePasswordModalComponent {
     }
 
     this.saving = true;
-    this.auth.changePassword(this.oldPassword, this.newPassword).subscribe({
-      next: async () => {
-        this.saving = false;
+
+    const finish = async (ok: boolean) => {
+      this.saving = false;
+      if (ok) {
         await this.toast('CHANGE_PW.SUCCESS');
         this.modalCtrl.dismiss(true);
-      },
-      error: async () => {
-        this.saving = false;
+      } else {
         await this.toast('CHANGE_PW.ERROR');
-      },
-    });
+      }
+    };
+
+    // Bei dir kommt offenbar boolean zurück. Bei anderen Setups evtl. Observable/Promise.
+    const result: any = this.auth.changePassword(this.oldPassword, this.newPassword);
+
+    // Observable-like (hat subscribe)
+    if (result && typeof result.subscribe === 'function') {
+      result.subscribe({
+        next: async (ok: unknown) => {
+          // manche Implementierungen senden gar keinen Wert -> dann als Erfolg werten
+          await finish(ok === undefined ? true : !!ok);
+        },
+        error: async () => {
+          await finish(false);
+        },
+      });
+      return;
+    }
+
+    // Promise oder boolean (oder sonstwas sync)
+    try {
+      const ok = await Promise.resolve(result);
+      await finish(!!ok);
+    } catch {
+      await finish(false);
+    }
   }
 
   private async toast(key: string) {

@@ -1,48 +1,65 @@
 {
   "LOGIN": {
-    "TITLE": "Anmeldung",
-    "USERNAME": "Benutzername",
+    "TITLE": "Login",
+    "USERNAME": "Username oder E-Mail Adresse",
     "PASSWORD": "Passwort",
-    "SIGN_IN": "Einloggen"
+    "BUTTON": "Login",
+    "DSGVO": "DSGVO",
+    "ERROR": "Login fehlgeschlagen",
+    "FILL_ALL": "Bitte Username und Passwort eingeben",
+    "MISSING": "Bitte Benutzername und Passwort eingeben."
+  },
+  "DSGVO": {
+    "TITLE": "DSGVO",
+    "INTRO": "Bitte akzeptiere die Datenschutzbedingungen, um fortzufahren.",
+    "P1": "Daten werden ausschließlich für die Portal-Funktion verwendet.",
+    "P2": "Es findet keine Weitergabe an Dritte ohne Rechtsgrundlage statt.",
+    "P3": "Du kannst deine Zustimmung später widerrufen.",
+    "DECLINE": "Ablehnen",
+    "ACCEPT": "Akzeptieren",
+    "MUST_ACCEPT": "Ohne Zustimmung kannst du das Portal nicht nutzen."
   },
   "TABS": {
     "DASHBOARDS": "Dashboards",
-    "REPORTS": "Reports",
-    "PROFILE": "Profil"
+    "REPORTS": "Berichte"
   },
   "DASHBOARDS": {
-    "TITLE": "Dashboard",
-    "CHART_TITLE": "Verbrauchsübersicht",
-    "CHART_PLACEHOLDER": "Chart für Jahr:",
-    "SELECT_ROOM": "Raum auswählen"
+    "TITLE": "Dashboards",
+    "CHART_TITLE": "Chart",
+    "CHART_PLACEHOLDER": "Platzhalterdaten für Jahr"
   },
   "REPORTS": {
-    "TITLE": "Reports",
-    "GENERAL": "Allgemein",
-    "NAME": "Name",
+    "TITLE": "Berichte",
+    "GENERAL": "Allgemeine Informationen",
+    "NAME": "Bericht Name",
     "SETTINGS": "Einstellungen",
-    "INTERVAL": "Intervall",
+    "INTERVAL": "Intervall für Berichte",
     "DAILY": "Täglich",
     "WEEKLY": "Wöchentlich",
     "MONTHLY": "Monatlich",
     "YEARLY": "Jährlich",
-    "SEND": "Senden"
+    "SEND": "Bericht senden"
   },
   "PROFILE": {
     "TITLE": "Profil",
+    "PERSONAL_DATA": "Persönliche Daten",
+    "SECURITY": "Sicherheit",
+    "SETTINGS": "Einstellungen",
     "LANGUAGE": "Sprache",
-    "GERMAN": "Deutsch",
-    "ENGLISH": "Englisch",
-    "LOGOUT": "Logout"
+    "CHANGE_PASSWORD": "Passwort ändern",
+    "SAVE": "Speichern"
   },
   "CHANGE_PW": {
-    "TITLE": "Passwort",
-    "OPEN": "Passwort ändern"
-  },
-  "DSGVO": {
-    "TITLE": "Datenschutz (DSGVO)",
-    "TEXT": "Bitte akzeptiere die DSGVO, um fortzufahren.",
-    "ACCEPT": "Akzeptieren",
-    "DECLINE": "Ablehnen"
+    "TITLE": "Passwort ändern",
+    "OLD": "Altes Passwort",
+    "NEW": "Neues Passwort",
+    "CONFIRM": "Neues Passwort bestätigen",
+    "CANCEL": "Abbrechen",
+    "SAVE": "Speichern",
+    "FILL_ALL": "Bitte alle Felder ausfüllen",
+    "WEAK": "Neues Passwort muss mindestens 8 Zeichen haben",
+    "MISMATCH": "Passwörter stimmen nicht überein",
+    "SUCCESS": "Passwort erfolgreich geändert",
+    "ERROR": "Passwort ändern fehlgeschlagen"
   }
 }

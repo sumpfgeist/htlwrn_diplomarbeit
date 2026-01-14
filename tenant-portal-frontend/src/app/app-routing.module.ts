@@ -22,7 +22,11 @@ const routes: Routes = [
       import('./pages/profile/profile.page').then(m => m.ProfilePage),
   },
 
-  { path: '**', redirectTo: 'login' },
+  { path: '**', redirectTo: 'login' },  {
+    path: 'dsgvo',
+    loadChildren: () => import('./pages/dsgvo/dsgvo.module').then( m => m.DsgvoPageModule)
+  },
+
 ];
 
 @NgModule({
