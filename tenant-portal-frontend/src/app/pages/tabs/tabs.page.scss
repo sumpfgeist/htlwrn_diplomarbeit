@@ -1,0 +1,16 @@
+.app-tabbar {
+  /* Mockup-style: solid accent bar */
+  --background: var(--app-accent);
+  --border: 0;
+  height: 56px;
+}
+
+.app-tabbar ion-tab-button {
+  --color: rgba(255, 255, 255, 0.75);
+  --color-selected: #ffffff;
+}
+
+.app-tabbar ion-icon {
+  font-size: 20px;
+  margin-bottom: 2px;
+}

@@ -9,30 +9,55 @@
     <ion-title>{{ 'DASHBOARDS.TITLE' | translate }}</ion-title>
 
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/tabs/profile']">
+      <ion-button (click)="openProfile()">
         <ion-icon name="person-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 
   <ion-toolbar>
-    <ion-select interface="popover" [(ngModel)]="selectedRoom" (ionChange)="loadChart()">
-      <ion-select-option *ngFor="let r of rooms" [value]="r">{{ r }}</ion-select-option>
-    </ion-select>
+    <div class="filter-row">
+      <ion-item lines="none" class="room-item">
+        <ion-select
+          interface="popover"
+          [interfaceOptions]="roomSelectOptions"
+          [(ngModel)]="selectedRoom"
+          (ionChange)="loadChart()"
+        >
+          <ion-select-option *ngFor="let r of rooms" [value]="r">{{ r }}</ion-select-option>
+        </ion-select>
+      </ion-item>
 
-    <ion-buttons slot="end">
-      <ion-button fill="clear" (click)="prevYear()">
-        <ion-icon name="chevron-back-outline"></ion-icon>
+      <div class="nav">
+        <ion-button fill="clear" (click)="prev()">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </ion-button>
+
+        <div class="date-label">{{ dateLabel }}</div>
+
+        <ion-button fill="clear" (click)="next()">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="period-row">
+      <ion-button size="small" [fill]="period==='today' ? 'solid' : 'outline'" (click)="setPeriod('today')">
+        Heute
       </ion-button>
-    </ion-buttons>
-
-    <ion-title class="year-title">{{ viewYear }}</ion-title>
-
-    <ion-buttons slot="end">
-      <ion-button fill="clear" (click)="nextYear()">
-        <ion-icon name="chevron-forward-outline"></ion-icon>
+      <ion-button size="small" [fill]="period==='day' ? 'solid' : 'outline'" (click)="setPeriod('day')">
+        Tag
       </ion-button>
-    </ion-buttons>
+      <ion-button size="small" [fill]="period==='week' ? 'solid' : 'outline'" (click)="setPeriod('week')">
+        Woche
+      </ion-button>
+      <ion-button size="small" [fill]="period==='month' ? 'solid' : 'outline'" (click)="setPeriod('month')">
+        Monat
+      </ion-button>
+      <ion-button size="small" [fill]="period==='year' ? 'solid' : 'outline'" (click)="setPeriod('year')">
+        Jahr
+      </ion-button>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -43,9 +68,10 @@
         {{ 'DASHBOARDS.CHART_TITLE' | translate }} ({{ selectedRoom }})
       </ion-card-title>
     </ion-card-header>
+
     <ion-card-content>
       <div class="chart-placeholder">
-        {{ 'DASHBOARDS.CHART_PLACEHOLDER' | translate }} {{ viewYear }}
+        Platzhalterdaten für {{ dateLabel }}
       </div>
     </ion-card-content>
   </ion-card>

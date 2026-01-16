@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-reports',
   standalone: true,
-  imports: [CommonModule, IonicModule, FormsModule, RouterLink, TranslateModule],
+  imports: [CommonModule, IonicModule, FormsModule, TranslateModule],
   templateUrl: './reports.page.html',
   styleUrls: ['./reports.page.scss'],
 })
@@ -21,19 +21,24 @@ export class ReportsPage {
     room2: false,
   };
 
-  constructor(private router: Router) {}
+  intervalSelectOptions = { cssClass: 'wide-select-popover' };
+
+  constructor(private router: Router, private toastCtrl: ToastController) {}
 
   close() {
-    // Du bist in Tabs, also navigier sauber zurück
     this.router.navigateByUrl('/tabs/dashboards');
   }
 
-  sendReport() {
-    // TODO: echte Report-API
-    console.log('Sending report', {
-      reportName: this.reportName,
-      interval: this.interval,
-      rooms: this.rooms,
+  openProfile() {
+    this.router.navigateByUrl('/tabs/profile');
+  }
+
+  async sendReport() {
+    const t = await this.toastCtrl.create({
+      message: `Bericht "${this.reportName}" (${this.interval}) wird gesendet (Demo)`,
+      duration: 1500,
+      position: 'bottom',
     });
+    await t.present();
   }
 }

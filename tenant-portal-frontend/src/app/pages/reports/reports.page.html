@@ -9,7 +9,7 @@
     <ion-title>{{ 'REPORTS.TITLE' | translate }}</ion-title>
 
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/tabs/profile']">
+      <ion-button (click)="openProfile()">
         <ion-icon name="person-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -40,14 +40,19 @@
 
     <ion-card-content>
       <ion-item lines="none">
-        <ion-checkbox [(ngModel)]="rooms.room1">Raum 1</ion-checkbox>
+        <ion-checkbox slot="start" [(ngModel)]="rooms.room1"></ion-checkbox>
+        <ion-label>Raum 1</ion-label>
       </ion-item>
+
       <ion-item lines="none">
-        <ion-checkbox [(ngModel)]="rooms.room2">Raum 2</ion-checkbox>
+        <ion-checkbox slot="start" [(ngModel)]="rooms.room2"></ion-checkbox>
+        <ion-label>Raum 2</ion-label>
       </ion-item>
 
       <ion-item>
         <ion-select
+          interface="popover"
+          [interfaceOptions]="intervalSelectOptions"
           [label]="'REPORTS.INTERVAL' | translate"
           labelPlacement="stacked"
           [(ngModel)]="interval"

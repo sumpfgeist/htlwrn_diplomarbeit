@@ -1,3 +1,20 @@
 .card-soft {
   border-radius: 16px;
 }
+
+ion-item ion-label {
+  margin-left: 8px;
+}
+:host {
+  z-index: 1;
+}
+
+ion-header,
+ion-content,
+ion-toolbar,
+ion-button,
+ion-select,
+ion-checkbox,
+ion-card {
+  pointer-events: auto !important;
+}

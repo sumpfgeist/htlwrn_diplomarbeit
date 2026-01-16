@@ -1,2 +1,47 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+/*
+ * Ionic Variables and App Theme
+ * -----------------------------------------------------
+ * Goal: match the provided mockups (light surfaces, blue accent) while still
+ * allowing ThemeService (API) to override via CSS variables at runtime.
+ */
+
+:root {
+  /* --- App tokens (used in SCSS) --- */
+  --app-bg: #f2f2f2;
+  --app-surface: #ffffff;
+  --app-surface-2: #f8f8f8;
+  --app-border: rgba(0, 0, 0, 0.08);
+  --app-text: #0f172a;
+  --app-text-muted: rgba(15, 23, 42, 0.65);
+
+  /* Accent (sampled from your mockups: RGB ~ 51/153/198) */
+  --app-accent: #3399c6;
+
+  /* Toolbar defaults (mockups show a blue header) */
+  --app-toolbar-bg: var(--app-accent);
+  --app-toolbar-fg: #ffffff;
+
+  /* --- Ionic core colors --- */
+  --ion-color-primary: var(--app-accent);
+  --ion-color-primary-rgb: 51, 153, 198;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #2d87ae;
+  --ion-color-primary-tint: #4ba5cd;
+
+  /* Keep secondary aligned with primary for now */
+  --ion-color-secondary: var(--app-accent);
+  --ion-color-secondary-rgb: 51, 153, 198;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #2d87ae;
+  --ion-color-secondary-tint: #4ba5cd;
+
+  /* Background & text */
+  --ion-background-color: var(--app-bg);
+  --ion-text-color: var(--app-text);
+
+  /* Items (inputs inside cards should look clean) */
+  --ion-item-background: transparent;
+  --ion-item-border-color: var(--app-border);
+}

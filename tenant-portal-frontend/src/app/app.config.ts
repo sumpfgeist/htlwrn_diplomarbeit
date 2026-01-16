@@ -1,7 +1,8 @@
 import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, RouteReuseStrategy } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideIonicAngular } from '@ionic/angular/standalone';
+import { IonicRouteStrategy } from '@ionic/angular';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -17,6 +18,9 @@ export const appConfig: ApplicationConfig = {
     provideIonicAngular(),
     provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
+
+    // ✅ wichtig für Ionic Navigation / Tabs
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
 
     // ngx-translate (v17+) style providers
     provideTranslateService({

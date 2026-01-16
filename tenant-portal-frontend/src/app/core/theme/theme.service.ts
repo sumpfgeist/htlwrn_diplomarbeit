@@ -31,6 +31,9 @@ export class ThemeService {
     root.style.setProperty('--ion-color-secondary', t.accentBasedOn);
     root.style.setProperty('--ion-color-secondary-contrast', t.accentContrast || '#ffffff');
 
+    // App token used across SCSS (tabs, icons, etc.)
+    root.style.setProperty('--app-accent', t.accentBasedOn || t.primaryBasedOn);
+
     // Toolbar / header
     root.style.setProperty('--app-toolbar-bg', t.toolbarColor || t.primaryBasedOn);
     root.style.setProperty('--app-toolbar-fg', t.toolbarFontColor || '#ffffff');

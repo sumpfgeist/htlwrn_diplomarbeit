@@ -47,6 +47,8 @@
     <ion-card-content>
       <ion-item>
         <ion-select
+          interface="popover"
+          [interfaceOptions]="{ cssClass: 'wide-select-popover' }"
           [label]="'PROFILE.LANGUAGE' | translate"
           labelPlacement="stacked"
           [(ngModel)]="lang"

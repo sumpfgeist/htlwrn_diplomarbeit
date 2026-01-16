@@ -15,6 +15,13 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/dsgvo/dsgvo.page').then((m) => m.DsgvoPage),
   },
 
+  // ✅ Profile ist KEIN Tab
+  {
+    path: 'profile',
+    canActivate: [AuthGuard],
+    loadComponent: () => import('./pages/profile/profile.page').then((m) => m.ProfilePage),
+  },
+
   {
     path: 'tabs',
     canActivate: [AuthGuard],
@@ -30,11 +37,10 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/reports/reports.page').then((m) => m.ReportsPage),
       },
-      {
-        path: 'profile',
-        loadComponent: () =>
-          import('./pages/profile/profile.page').then((m) => m.ProfilePage),
-      },
+
+      // falls irgendwo noch drauf verlinkt wird:
+      { path: 'profile', redirectTo: '/profile', pathMatch: 'full' },
+
       { path: '', redirectTo: 'dashboards', pathMatch: 'full' },
     ],
   },
@@ -42,5 +48,5 @@ export const routes: Routes = [
   { path: '**', redirectTo: 'login' },
 ];
 
-// backwards-compat alias (some files import appRoutes, others import routes)
+// backwards-compat alias
 export const appRoutes = routes;

@@ -21,7 +21,8 @@
   },
   "TABS": {
     "DASHBOARDS": "Dashboards",
-    "REPORTS": "Reports"
+    "REPORTS": "Reports",
+    "PROFILE" : "Profile"
   },
   "DASHBOARDS": {
     "TITLE": "Dashboards",

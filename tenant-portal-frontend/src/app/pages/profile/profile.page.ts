@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { IonicModule, ModalController, ToastController } from '@ionic/angular';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -12,7 +12,7 @@ import { ChangePasswordModalComponent } from '../../shared/change-password-modal
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, IonicModule, FormsModule, RouterLink, TranslateModule],
+  imports: [CommonModule, IonicModule, FormsModule, TranslateModule],
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })

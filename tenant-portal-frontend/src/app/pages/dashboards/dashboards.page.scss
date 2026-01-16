@@ -1,40 +1,37 @@
 .filter-row {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 10px;
+  grid-template-columns: 220px 1fr;
+  gap: 12px;
   align-items: center;
-  padding: 4px 10px;
+  padding: 6px 10px;
 }
 
-.year-nav {
+.room-item {
+  --background: transparent;
+  --inner-padding-end: 0;
+  --padding-start: 0;
+  min-width: 200px;
+}
+
+.nav {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 6px;
-
-  .year { font-weight: 700; min-width: 60px; text-align: center; }
 }
 
-.center-title {
+.date-label {
+  min-width: 140px;
   text-align: center;
-  font-weight: 800;
+  font-weight: 700;
 }
 
-.legend {
+.period-row {
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 8px;
-  margin-bottom: 10px;
-  font-size: 13px;
-
-  .dot {
-    width: 18px; height: 10px; border-radius: 3px;
-    background: #f4c20d;
-    &.alt { background: #b400ff; }
-  }
+  padding: 6px 10px 10px 10px;
+  flex-wrap: wrap;
 }
-
 
 .chart-placeholder {
   height: 220px;
@@ -42,20 +39,24 @@
   place-items: center;
   border: 1px dashed rgba(0, 0, 0, 0.25);
   border-radius: 12px;
-}
-.year-title {
-  text-align: center;
-  min-width: 80px;
-}
-
-.chart-placeholder {
   padding: 24px;
   text-align: center;
-  opacity: 0.8;
-  border: 1px dashed rgba(0, 0, 0, 0.25);
-  border-radius: 12px;
+  opacity: 0.85;
 }
 
 .card-soft {
   border-radius: 16px;
+}
+:host {
+  z-index: 1;
+}
+
+ion-header,
+ion-content,
+ion-toolbar,
+ion-button,
+ion-select,
+ion-checkbox,
+ion-card {
+  pointer-events: auto !important;
 }
