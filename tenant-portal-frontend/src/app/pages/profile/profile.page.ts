@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule, ModalController, ToastController } from '@ionic/angular';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { AuthService } from '../../services/auth.service';
-import { LanguageService } from '../../services/language.service';
+import { LanguageService, AppLang } from '../../services/language.service';
 import { ChangePasswordModalComponent } from '../../shared/change-password-modal/change-password-modal.component';
 
 @Component({
@@ -20,21 +20,20 @@ export class ProfilePage {
   name = 'Max Mustermann';
   email = 'max@example.com';
 
-  lang: 'de' | 'en' = 'de';
+  lang: AppLang = 'de';
 
   constructor(
     private auth: AuthService,
     private router: Router,
-    private langService: LanguageService,
+    private languageService: LanguageService,
     private modalCtrl: ModalController,
-    private toastCtrl: ToastController,
-    private i18n: TranslateService
+    private toastCtrl: ToastController
   ) {
-    this.lang = this.langService.getCurrent();
+    this.lang = this.languageService.getCurrent();
   }
 
   onLangChange() {
-    this.langService.setLanguage(this.lang);
+    this.languageService.setLanguage(this.lang);
   }
 
   async openChangePassword() {
@@ -42,15 +41,6 @@ export class ProfilePage {
       component: ChangePasswordModalComponent,
     });
     await modal.present();
-
-    const res = await modal.onWillDismiss<boolean>();
-    if (res.data === true) {
-      const t = await this.toastCtrl.create({
-        message: this.i18n.instant('CHANGE_PW.SUCCESS'),
-        duration: 2000,
-      });
-      await t.present();
-    }
   }
 
   save() {

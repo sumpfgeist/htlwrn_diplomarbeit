@@ -38,3 +38,21 @@
   opacity: 0.6;
   font-size: 12px;
 }
+:host {
+  --login-border: rgba(0, 0, 0, 0.22);          /* dünn, aber sichtbar */
+  --login-border-focus: rgba(47, 137, 182, 0.75); /* dein Blau/Teal beim Fokus */
+}
+
+/* Nur Items im Login-Form hübsch umranden */
+ion-item.login-field::part(native) {
+  border: 1px solid var(--login-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: none;
+}
+
+/* Fokus: gleiche Dicke, nur Farbe */
+ion-item.login-field.item-has-focus::part(native),
+ion-item.login-field.ion-focused::part(native) {
+  border-color: var(--login-border-focus);
+}

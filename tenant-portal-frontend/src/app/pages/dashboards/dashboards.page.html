@@ -43,19 +43,19 @@
 
     <div class="period-row">
       <ion-button size="small" [fill]="period==='today' ? 'solid' : 'outline'" (click)="setPeriod('today')">
-        Heute
+        {{ 'DASHBOARDS.TODAY' | translate }}
       </ion-button>
       <ion-button size="small" [fill]="period==='day' ? 'solid' : 'outline'" (click)="setPeriod('day')">
-        Tag
+        {{ 'DASHBOARDS.DAY' | translate }}
       </ion-button>
       <ion-button size="small" [fill]="period==='week' ? 'solid' : 'outline'" (click)="setPeriod('week')">
-        Woche
+        {{ 'DASHBOARDS.WEEK' | translate }}
       </ion-button>
       <ion-button size="small" [fill]="period==='month' ? 'solid' : 'outline'" (click)="setPeriod('month')">
-        Monat
+        {{ 'DASHBOARDS.MONTH' | translate }}
       </ion-button>
       <ion-button size="small" [fill]="period==='year' ? 'solid' : 'outline'" (click)="setPeriod('year')">
-        Jahr
+        {{ 'DASHBOARDS.YEAR' | translate }}
       </ion-button>
     </div>
   </ion-toolbar>
@@ -71,7 +71,7 @@
 
     <ion-card-content>
       <div class="chart-placeholder">
-        Platzhalterdaten für {{ dateLabel }}
+        {{ 'DASHBOARDS.CHART_PLACEHOLDER' | translate }} {{ dateLabel }}
       </div>
     </ion-card-content>
   </ion-card>

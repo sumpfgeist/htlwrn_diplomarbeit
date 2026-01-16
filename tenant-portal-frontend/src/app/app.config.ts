@@ -3,6 +3,7 @@ import { provideRouter, RouteReuseStrategy } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { IonicRouteStrategy } from '@ionic/angular';
+
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -16,13 +17,11 @@ export function initLanguage(language: LanguageService) {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideIonicAngular(),
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+
     provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
 
-    // ✅ wichtig für Ionic Navigation / Tabs
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-
-    // ngx-translate (v17+) style providers
     provideTranslateService({
       fallbackLang: 'de',
       loader: provideTranslateHttpLoader({

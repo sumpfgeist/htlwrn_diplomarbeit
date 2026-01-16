@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -16,9 +16,9 @@ type Period = 'today' | 'day' | 'week' | 'month' | 'year';
   templateUrl: './dashboards.page.html',
   styleUrls: ['./dashboards.page.scss'],
 })
-export class DashboardsPage {
-  rooms: string[] = ['Raum 1', 'Raum 2'];
-  selectedRoom = this.rooms[0];
+export class DashboardsPage implements OnInit {
+  rooms: string[] = [];
+  selectedRoom = '';
 
   period: Period = 'year';
   viewDate: Date = new Date();
@@ -28,11 +28,25 @@ export class DashboardsPage {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private translate: TranslateService
   ) {}
 
+  ngOnInit() {
+    this.loadRooms();
+  }
+
+  private loadRooms() {
+    this.rooms = [
+      this.translate.instant('DASHBOARDS.ROOM') + ' 1',
+      this.translate.instant('DASHBOARDS.ROOM') + ' 2'
+    ];
+    this.selectedRoom = this.rooms[0];
+  }
+
   get dateLabel(): string {
-    const locale = 'de-AT';
+    const currentLang = this.translate.currentLang || 'de';
+    const locale = currentLang === 'de' ? 'de-AT' : 'en-US';
 
     if (this.period === 'year') {
       return `${this.viewDate.getFullYear()}`;
@@ -44,7 +58,8 @@ export class DashboardsPage {
 
     if (this.period === 'week') {
       const { week, year } = this.getIsoWeek(this.viewDate);
-      return `KW ${week}/${year}`;
+      const cwLabel = this.translate.instant('DASHBOARDS.CALENDAR_WEEK');
+      return `${cwLabel} ${week}/${year}`;
     }
 
     // day / today

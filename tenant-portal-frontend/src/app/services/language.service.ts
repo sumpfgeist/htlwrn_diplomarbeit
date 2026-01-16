@@ -1,47 +1,72 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-export type SupportedLang = 'de' | 'en';
+export type AppLang = 'de' | 'en';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class LanguageService {
-  private readonly storageKey = 'lang';
-  private readonly supported: SupportedLang[] = ['de', 'en'];
+  private readonly STORAGE_KEY = 'app_lang';
+  private current: AppLang = 'de';
 
-  constructor(private translate: TranslateService) {}
+  constructor(private translate: TranslateService) {
+    // Default-Fallback
+    this.translate.setDefaultLang('de');
+  }
 
   /**
-   * Initialize language on app start.
-   * Uses localStorage (lang) if present, otherwise falls back to "de".
+   * Wird beim App-Start über APP_INITIALIZER aufgerufen.
+   * Liest die gespeicherte Sprache und aktiviert sie global.
    */
   init(): void {
-    const stored = localStorage.getItem(this.storageKey) as SupportedLang | null;
-    const lang: SupportedLang = stored && this.supported.includes(stored) ? stored : 'de';
-
-    // ngx-translate v17+: setFallbackLang replaces setDefaultLang
-    this.translate.setFallbackLang('de');
-    void this.translate.use(lang);
+    const saved = this.readStoredLang();
+    const initial = saved ?? this.detectBrowserLang() ?? 'de';
+    this.applyLanguage(initial);
   }
 
-  getCurrent(): SupportedLang {
-    const current = this.translate.getCurrentLang() as SupportedLang | undefined;
-    if (current === 'de' || current === 'en') return current;
-
-    const stored = localStorage.getItem(this.storageKey);
-    return stored === 'en' ? 'en' : 'de';
+  getCurrent(): AppLang {
+    return this.current;
   }
 
-  /**
-   * Backwards-friendly alias (your ProfilePage used currentLang()).
-   */
-  currentLang(): SupportedLang {
-    return this.getCurrent();
+  setLanguage(lang: AppLang): void {
+    this.applyLanguage(lang);
+    this.storeLang(lang);
   }
 
-  setLanguage(lang: SupportedLang): void {
-    localStorage.setItem(this.storageKey, lang);
-    void this.translate.use(lang);
+  private applyLanguage(lang: AppLang): void {
+    this.current = lang;
+
+    // ngx-translate global umschalten
+    this.translate.use(lang);
+
+    // Optional, aber sauber: HTML lang setzen
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = lang;
+    }
+  }
+
+  private storeLang(lang: AppLang): void {
+    try {
+      localStorage.setItem(this.STORAGE_KEY, lang);
+    } catch {
+      // z.B. Safari Private Mode: localStorage kann zicken. Dann halt ohne Persistenz.
+    }
+  }
+
+  private readStoredLang(): AppLang | null {
+    try {
+      const v = localStorage.getItem(this.STORAGE_KEY);
+      return v === 'de' || v === 'en' ? v : null;
+    } catch {
+      return null;
+    }
+  }
+
+  private detectBrowserLang(): AppLang | null {
+    if (typeof navigator === 'undefined') return null;
+
+    const raw = (navigator.language || 'de').toLowerCase();
+    if (raw.startsWith('de')) return 'de';
+    if (raw.startsWith('en')) return 'en';
+    return null;
   }
 }

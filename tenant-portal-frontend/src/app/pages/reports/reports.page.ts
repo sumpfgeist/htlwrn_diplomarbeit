@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule, ToastController } from '@ionic/angular';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-reports',
@@ -23,7 +23,11 @@ export class ReportsPage {
 
   intervalSelectOptions = { cssClass: 'wide-select-popover' };
 
-  constructor(private router: Router, private toastCtrl: ToastController) {}
+  constructor(
+    private router: Router,
+    private toastCtrl: ToastController,
+    private translate: TranslateService
+  ) {}
 
   close() {
     this.router.navigateByUrl('/tabs/dashboards');
@@ -34,8 +38,11 @@ export class ReportsPage {
   }
 
   async sendReport() {
+    const intervalText = this.translate.instant(`REPORTS.${this.interval.toUpperCase()}`);
+    const message = `${this.translate.instant('REPORTS.SEND')}: "${this.reportName}" (${intervalText})`;
+
     const t = await this.toastCtrl.create({
-      message: `Bericht "${this.reportName}" (${this.interval}) wird gesendet (Demo)`,
+      message,
       duration: 1500,
       position: 'bottom',
     });

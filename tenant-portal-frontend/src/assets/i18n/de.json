@@ -24,11 +24,20 @@
     "REPORTS": "Berichte",
     "PROFILE" : "Profil"
   },
+
   "DASHBOARDS": {
     "TITLE": "Dashboards",
     "CHART_TITLE": "Chart",
-    "CHART_PLACEHOLDER": "Platzhalterdaten für Jahr"
+    "CHART_PLACEHOLDER": "Platzhalterdaten für",
+    "ROOM": "Raum",
+    "TODAY": "Heute",
+    "DAY": "Tag",
+    "WEEK": "Woche",
+    "MONTH": "Monat",
+    "YEAR": "Jahr",
+    "CALENDAR_WEEK": "KW"
   },
+
   "REPORTS": {
     "TITLE": "Berichte",
     "GENERAL": "Allgemeine Informationen",
@@ -39,7 +48,9 @@
     "WEEKLY": "Wöchentlich",
     "MONTHLY": "Monatlich",
     "YEARLY": "Jährlich",
-    "SEND": "Bericht senden"
+    "SEND": "Bericht senden",
+    "ROOM_1": "Raum 1",
+    "ROOM_2": "Raum 2"
   },
   "PROFILE": {
     "TITLE": "Profil",

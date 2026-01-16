@@ -27,7 +27,14 @@
   "DASHBOARDS": {
     "TITLE": "Dashboards",
     "CHART_TITLE": "Chart",
-    "CHART_PLACEHOLDER": "Placeholder data for year"
+    "CHART_PLACEHOLDER": "Placeholder data for",
+    "ROOM": "Room",
+    "TODAY": "Today",
+    "DAY": "Day",
+    "WEEK": "Week",
+    "MONTH": "Month",
+    "YEAR": "Year",
+    "CALENDAR_WEEK": "CW"
   },
   "REPORTS": {
     "TITLE": "Reports",
@@ -39,7 +46,9 @@
     "WEEKLY": "Weekly",
     "MONTHLY": "Monthly",
     "YEARLY": "Yearly",
-    "SEND": "Send report"
+    "SEND": "Send report",
+    "ROOM_1": "Room 1",
+    "ROOM_2": "Room 2"
   },
   "PROFILE": {
     "TITLE": "Profile",
