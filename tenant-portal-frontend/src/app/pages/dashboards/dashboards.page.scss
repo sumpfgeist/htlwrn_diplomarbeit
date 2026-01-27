@@ -1,16 +1,50 @@
+:host {
+  z-index: 1;
+}
+
+ion-header,
+ion-content,
+ion-toolbar,
+ion-button,
+ion-select,
+ion-checkbox,
+ion-card {
+  pointer-events: auto !important;
+}
+
+/* ---------- Container (damit Desktop nicht auseinanderfliegt) ---------- */
+.dash-container {
+  width: 100%;
+  padding: 0 10px;
+}
+
+@media (min-width: 992px) {
+  .dash-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+/* ---------- Filter Row ---------- */
 .filter-row {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: minmax(140px, 220px) 1fr;
   gap: 12px;
   align-items: center;
-  padding: 6px 10px;
+  padding: 6px 0;
 }
 
 .room-item {
   --background: transparent;
   --inner-padding-end: 0;
   --padding-start: 0;
-  min-width: 200px;
+  min-width: 0; /* wichtig: verhindert Overflow im Grid */
+}
+
+.room-item ion-select {
+  width: 100%;
+  max-width: 100%;
 }
 
 .nav {
@@ -18,19 +52,93 @@
   align-items: center;
   justify-content: flex-end;
   gap: 6px;
+  min-width: 0;
 }
 
 .date-label {
-  min-width: 140px;
+  min-width: 0; /* min-width killen, sonst quetscht Mobile */
+  max-width: 160px;
   text-align: center;
   font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
+/* Mobile: stapeln */
+@media (max-width: 430px) {
+  .filter-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .nav {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .date-label {
+    max-width: 100%;
+  }
+}
+
+/* Desktop Feinschliff */
+@media (min-width: 992px) {
+  .filter-row {
+    grid-template-columns: 260px 1fr;
+    padding: 10px 0;
+  }
+
+  .date-label {
+    max-width: 220px;
+  }
+}
+
+/* ---------- Period Row ---------- */
+/* Mobile-first: nicht umbrechen, sondern scrollen */
 .period-row {
   display: flex;
   gap: 8px;
-  padding: 6px 10px 10px 10px;
-  flex-wrap: wrap;
+  padding: 6px 0 10px 0;
+
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.period-row ion-button {
+  flex: 0 0 auto;
+  min-width: 84px;
+}
+
+/* optional: Scrollbar verstecken */
+.period-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Desktop: normal wirken lassen */
+@media (min-width: 992px) {
+  .period-row {
+    overflow-x: visible;
+    flex-wrap: wrap;
+    padding: 8px 0 12px 0;
+  }
+
+  .period-row ion-button {
+    min-width: 96px;
+  }
+}
+
+/* ---------- Content / Card ---------- */
+ion-content.ion-padding {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+
+.card-soft {
+  border-radius: 16px;
 }
 
 .chart-placeholder {
@@ -44,19 +152,29 @@
   opacity: 0.85;
 }
 
-.card-soft {
-  border-radius: 16px;
-}
-:host {
-  z-index: 1;
+@media (max-width: 430px) {
+  ion-content.ion-padding {
+    --padding-start: 10px;
+    --padding-end: 10px;
+  }
+
+  .chart-placeholder {
+    height: 200px;
+    padding: 16px;
+  }
+
+  .card-soft {
+    border-radius: 14px;
+  }
 }
 
-ion-header,
-ion-content,
-ion-toolbar,
-ion-button,
-ion-select,
-ion-checkbox,
-ion-card {
-  pointer-events: auto !important;
+@media (min-width: 992px) {
+  ion-card.card-soft {
+    max-width: 1100px;
+    margin: 16px auto;
+  }
+
+  .chart-placeholder {
+    height: 320px;
+  }
 }

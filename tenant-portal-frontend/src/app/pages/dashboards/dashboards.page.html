@@ -16,47 +16,51 @@
   </ion-toolbar>
 
   <ion-toolbar>
-    <div class="filter-row">
-      <ion-item lines="none" class="room-item">
-        <ion-select
-          interface="popover"
-          [interfaceOptions]="roomSelectOptions"
-          [(ngModel)]="selectedRoom"
-          (ionChange)="loadChart()"
-        >
-          <ion-select-option *ngFor="let r of rooms" [value]="r">{{ r }}</ion-select-option>
-        </ion-select>
-      </ion-item>
+    <div class="dash-container">
+      <div class="filter-row">
+        <ion-item lines="none" class="room-item">
+          <ion-select
+            interface="popover"
+            [interfaceOptions]="roomSelectOptions"
+            [(ngModel)]="selectedRoom"
+            (ionChange)="loadChart()"
+          >
+            <ion-select-option *ngFor="let r of rooms" [value]="r">
+              {{ r }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
 
-      <div class="nav">
-        <ion-button fill="clear" (click)="prev()">
-          <ion-icon name="chevron-back-outline"></ion-icon>
+        <div class="nav">
+          <ion-button fill="clear" (click)="prev()">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </ion-button>
+
+          <div class="date-label">{{ dateLabel }}</div>
+
+          <ion-button fill="clear" (click)="next()">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+      <div class="period-row">
+        <ion-button size="small" [fill]="period==='today' ? 'solid' : 'outline'" (click)="setPeriod('today')">
+          {{ 'DASHBOARDS.TODAY' | translate }}
         </ion-button>
-
-        <div class="date-label">{{ dateLabel }}</div>
-
-        <ion-button fill="clear" (click)="next()">
-          <ion-icon name="chevron-forward-outline"></ion-icon>
+        <ion-button size="small" [fill]="period==='day' ? 'solid' : 'outline'" (click)="setPeriod('day')">
+          {{ 'DASHBOARDS.DAY' | translate }}
+        </ion-button>
+        <ion-button size="small" [fill]="period==='week' ? 'solid' : 'outline'" (click)="setPeriod('week')">
+          {{ 'DASHBOARDS.WEEK' | translate }}
+        </ion-button>
+        <ion-button size="small" [fill]="period==='month' ? 'solid' : 'outline'" (click)="setPeriod('month')">
+          {{ 'DASHBOARDS.MONTH' | translate }}
+        </ion-button>
+        <ion-button size="small" [fill]="period==='year' ? 'solid' : 'outline'" (click)="setPeriod('year')">
+          {{ 'DASHBOARDS.YEAR' | translate }}
         </ion-button>
       </div>
-    </div>
-
-    <div class="period-row">
-      <ion-button size="small" [fill]="period==='today' ? 'solid' : 'outline'" (click)="setPeriod('today')">
-        {{ 'DASHBOARDS.TODAY' | translate }}
-      </ion-button>
-      <ion-button size="small" [fill]="period==='day' ? 'solid' : 'outline'" (click)="setPeriod('day')">
-        {{ 'DASHBOARDS.DAY' | translate }}
-      </ion-button>
-      <ion-button size="small" [fill]="period==='week' ? 'solid' : 'outline'" (click)="setPeriod('week')">
-        {{ 'DASHBOARDS.WEEK' | translate }}
-      </ion-button>
-      <ion-button size="small" [fill]="period==='month' ? 'solid' : 'outline'" (click)="setPeriod('month')">
-        {{ 'DASHBOARDS.MONTH' | translate }}
-      </ion-button>
-      <ion-button size="small" [fill]="period==='year' ? 'solid' : 'outline'" (click)="setPeriod('year')">
-        {{ 'DASHBOARDS.YEAR' | translate }}
-      </ion-button>
     </div>
   </ion-toolbar>
 </ion-header>

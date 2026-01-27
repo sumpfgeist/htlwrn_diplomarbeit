@@ -17,13 +17,18 @@ type Period = 'today' | 'day' | 'week' | 'month' | 'year';
   styleUrls: ['./dashboards.page.scss'],
 })
 export class DashboardsPage implements OnInit {
-  rooms: string[] = [];
-  selectedRoom = '';
+  // Rooms are now plain numbers to avoid translation timing issues
+  rooms: number[] = [1, 2];
+  selectedRoom: number = 1;
 
   period: Period = 'year';
   viewDate: Date = new Date();
 
   roomSelectOptions = { cssClass: 'wide-select-popover' };
+
+  // Guard against double-triggered clicks (mobile/webview can be “special”)
+  private lastNavAt = 0;
+  private readonly navCooldownMs = 250;
 
   constructor(
     private auth: AuthService,
@@ -33,15 +38,21 @@ export class DashboardsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadRooms();
+    this.viewDate = this.atNoon(new Date());
   }
 
-  private loadRooms() {
-    this.rooms = [
-      this.translate.instant('DASHBOARDS.ROOM') + ' 1',
-      this.translate.instant('DASHBOARDS.ROOM') + ' 2'
-    ];
-    this.selectedRoom = this.rooms[0];
+  /** Make date DST-safe by forcing local noon */
+  private atNoon(date: Date): Date {
+    const d = new Date(date);
+    d.setHours(12, 0, 0, 0);
+    return d;
+  }
+
+  private navAllowed(): boolean {
+    const now = Date.now();
+    if (now - this.lastNavAt < this.navCooldownMs) return false;
+    this.lastNavAt = now;
+    return true;
   }
 
   get dateLabel(): string {
@@ -77,20 +88,35 @@ export class DashboardsPage implements OnInit {
 
   setPeriod(p: Period) {
     this.period = p;
-    if (p === 'today') this.viewDate = new Date();
+
+    if (p === 'today') {
+      this.viewDate = this.atNoon(new Date());
+    } else {
+      this.viewDate = this.atNoon(this.viewDate);
+    }
+
     this.loadChart();
   }
 
   prev() {
+    if (!this.navAllowed()) return;
     this.shift(-1);
   }
 
   next() {
+    if (!this.navAllowed()) return;
     this.shift(+1);
   }
 
   private shift(dir: number) {
-    const d = new Date(this.viewDate);
+    if (this.period === 'today') {
+      // "today" stays anchored to real today
+      this.viewDate = this.atNoon(new Date());
+      this.loadChart();
+      return;
+    }
+
+    const d = this.atNoon(this.viewDate);
 
     switch (this.period) {
       case 'year':
@@ -103,12 +129,11 @@ export class DashboardsPage implements OnInit {
         d.setDate(d.getDate() + dir * 7);
         break;
       case 'day':
-      case 'today':
         d.setDate(d.getDate() + dir);
         break;
     }
 
-    this.viewDate = d;
+    this.viewDate = this.atNoon(d);
     this.loadChart();
   }
 
